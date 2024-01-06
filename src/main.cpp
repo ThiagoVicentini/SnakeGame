@@ -20,6 +20,9 @@ void reshape(GLsizei w, GLsizei h){
 }
 
 void display(){
+    glClear(GL_COLOR_BUFFER_BIT);
+    // Drawing
+    glutSwapBuffers();
 }
 
 void timer(int t){
