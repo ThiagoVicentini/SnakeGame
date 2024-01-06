@@ -2,6 +2,7 @@
 
 #define COLUMNS 40.0
 #define ROWS 40.0
+#define FPS 10
 
 using namespace std;
 
@@ -18,6 +19,8 @@ void display(){
 }
 
 void timer(int t){
+    glutPostRedisplay();
+    glutTimerFunc(1000/FPS, timer, 0);
 }
 
 void keyboard(int key, int x, int y){
