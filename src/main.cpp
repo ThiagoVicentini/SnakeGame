@@ -9,7 +9,7 @@ using namespace std;
 float w = 500, h = 500;
 
 void init(){
-    glClearColor(0, 0, 0, 1);
+    glClearColor(173/255.0, 204/255.0, 96/255.0, 1);
 }
 
 void reshape(GLsizei w, GLsizei h){
