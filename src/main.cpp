@@ -13,6 +13,11 @@ void init(){
 }
 
 void reshape(GLsizei w, GLsizei h){
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0.0, COLUMNS, 0.0, ROWS, -1.0, 1.0);
+    glMatrixMode(GL_MODELVIEW);
 }
 
 void display(){
