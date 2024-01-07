@@ -22,6 +22,16 @@ public:
     }
 };
 
+class Food {
+public:
+    pair<int, int> position;
+
+    Food(){
+    }
+
+    ~Food(){
+    }
+
 };
 
 Snake snake = Snake();
