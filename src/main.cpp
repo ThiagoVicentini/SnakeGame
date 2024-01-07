@@ -11,6 +11,17 @@ int cellCount = 40;
 class Snake {
 public:
     deque<pair<int, int>> body = {{6, 9}, {5, 9}, {4, 9}};
+    
+    void Draw(){
+        for(unsigned int i=0; i<body.size(); i++){
+            int x = body[i].first;
+            int y = body[i].second;
+            glColor3d(43/255.0, 51/255.0, 24/255.0);
+            glRectd(x, y, x+1, y+1);
+        }
+    }
+};
+
 };
 
 void init(){
