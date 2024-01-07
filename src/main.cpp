@@ -24,6 +24,7 @@ public:
 
 };
 
+Snake snake = Snake();
 void init(){
     glClearColor(173/255.0, 204/255.0, 96/255.0, 1);
 }
@@ -39,6 +40,7 @@ void reshape(GLsizei w, GLsizei h){
 void display(){
     glClear(GL_COLOR_BUFFER_BIT);
     // Drawing
+    snake.Draw();
     glutSwapBuffers();
 }
 
