@@ -50,6 +50,8 @@ public:
 };
 
 Snake snake = Snake();
+Food food = Food();
+
 void init(){
     glClearColor(173/255.0, 204/255.0, 96/255.0, 1);
 }
@@ -66,6 +68,7 @@ void display(){
     glClear(GL_COLOR_BUFFER_BIT);
     // Drawing
     snake.Draw();
+    food.Draw();
     glutSwapBuffers();
 }
 
