@@ -27,11 +27,21 @@ public:
     pair<int, int> position;
 
     Food(){
+        position = GenerateRandomPos();
     }
 
     ~Food(){
     }
 
+    int GetRandomValue(int min, int max) {
+        return min + rand()%(max-min);
+    }
+
+    pair<int, int> GenerateRandomPos(){
+        int x = GetRandomValue(1, cellCount-2);
+        int y = GetRandomValue(1, cellCount-2);
+        return make_pair(x, y);
+    }
 };
 
 Snake snake = Snake();
