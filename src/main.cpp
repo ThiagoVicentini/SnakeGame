@@ -1,4 +1,5 @@
 #include <GL/glut.h>
+#include <deque>
 
 #define FPS 10
 
@@ -6,6 +7,11 @@ using namespace std;
 
 int cellSize = 20;
 int cellCount = 40;
+
+class Snake {
+public:
+    deque<pair<int, int>> body = {{6, 9}, {5, 9}, {4, 9}};
+};
 
 void init(){
     glClearColor(173/255.0, 204/255.0, 96/255.0, 1);
