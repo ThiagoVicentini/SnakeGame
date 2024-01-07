@@ -33,6 +33,11 @@ public:
     ~Food(){
     }
 
+    void Draw() {
+        glColor3d(1.0, 0.0, 0.0);
+        glRectd(position.first, position.second, position.first+1, position.second+1);
+    }
+
     int GetRandomValue(int min, int max) {
         return min + rand()%(max-min);
     }
