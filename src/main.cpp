@@ -1,4 +1,5 @@
 #include <GL/glut.h>
+#include <time.h>
 #include <deque>
 
 #define FPS 10
@@ -54,6 +55,7 @@ Food food = Food();
 
 void init(){
     glClearColor(173/255.0, 204/255.0, 96/255.0, 1);
+    srand(time(NULL));
 }
 
 void reshape(GLsizei w, GLsizei h){
