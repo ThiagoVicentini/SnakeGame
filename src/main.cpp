@@ -9,6 +9,12 @@ using namespace std;
 int cellSize = 20;
 int cellCount = 40;
 
+bool IsPairsEquals(pair<int, int> onePair, pair<int, int> otherPair){
+    if(onePair.first == otherPair.first && onePair.second == otherPair.second)
+        return true;
+    return false;
+}
+
 pair<int, int> addPair(pair<int, int> onePair, pair<int, int> otherPair){
     int firstValue = onePair.first + otherPair.first;
     int secondValue = onePair.second + otherPair.second;
