@@ -62,8 +62,22 @@ public:
     }
 };
 
-Snake snake = Snake();
-Food food = Food();
+class Game {
+public:
+    Snake snake = Snake();
+    Food food = Food();
+
+    void Draw() {
+        food.Draw();
+        snake.Draw();
+    }
+
+    void Update() {
+        snake.Update();
+    }
+};
+
+Game game = Game();
 
 void init(){
     glClearColor(173/255.0, 204/255.0, 96/255.0, 1);
@@ -79,12 +93,10 @@ void reshape(GLsizei w, GLsizei h){
 }
 
 void display(){
-
-    snake.Update();
+    game.Update();
     glClear(GL_COLOR_BUFFER_BIT);
     // Drawing
-    snake.Draw();
-    food.Draw();
+    game.Draw();
     glutSwapBuffers();
 }
 
@@ -96,20 +108,20 @@ void timer(int t){
 void keyboard(int key, int x, int y){
     switch (key) {
         case GLUT_KEY_UP: 
-            if(snake.direction.second != -1)
-                snake.direction = {0, 1};
+            if(game.snake.direction.second != -1)
+                game.snake.direction = {0, 1};
             break;
         case GLUT_KEY_DOWN: 
-            if(snake.direction.second != 1)
-                snake.direction = {0, -1};
+            if(game.snake.direction.second != 1)
+                game.snake.direction = {0, -1};
             break;
         case GLUT_KEY_LEFT: 
-            if(snake.direction.first != 1)
-                snake.direction = {-1, 0};
+            if(game.snake.direction.first != 1)
+                game.snake.direction = {-1, 0};
             break;
         case GLUT_KEY_RIGHT: 
-            if(snake.direction.first != -1)
-                snake.direction = {1, 0};
+            if(game.snake.direction.first != -1)
+                game.snake.direction = {1, 0};
             break;
         default:
             break;
