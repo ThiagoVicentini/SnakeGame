@@ -99,6 +99,7 @@ class Game {
 public:
     Snake snake = Snake();
     Food food = Food(snake.body);
+    bool running = true;
 
     void Draw() {
         food.Draw();
@@ -106,9 +107,11 @@ public:
     }
 
     void Update() {
-        snake.Update();
-        CheckCollisionWithFood();
+        if(running) { 
+            snake.Update();
+            CheckCollisionWithFood();
             CheckCollisionWithEdges();
+        }
     }
 
     void CheckCollisionWithFood() {
@@ -130,6 +133,7 @@ public:
     void GameOver() {
         snake.Reset();
         food.position = food.GenerateRandomPos(snake.body);
+        running = false;
     }
 };
 
@@ -166,20 +170,22 @@ void keyboard(int key, int x, int y){
         case GLUT_KEY_UP: 
             if(game.snake.direction.second != -1)
                 game.snake.direction = {0, 1};
+            game.running = true;
             break;
         case GLUT_KEY_DOWN: 
             if(game.snake.direction.second != 1)
                 game.snake.direction = {0, -1};
+            game.running = true;
             break;
         case GLUT_KEY_LEFT: 
             if(game.snake.direction.first != 1)
                 game.snake.direction = {-1, 0};
+            game.running = true;
             break;
         case GLUT_KEY_RIGHT: 
             if(game.snake.direction.first != -1)
                 game.snake.direction = {1, 0};
-            break;
-        default:
+            game.running = true;
             break;
     }
 
