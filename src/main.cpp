@@ -79,6 +79,8 @@ void reshape(GLsizei w, GLsizei h){
 }
 
 void display(){
+
+    snake.Update();
     glClear(GL_COLOR_BUFFER_BIT);
     // Drawing
     snake.Draw();
