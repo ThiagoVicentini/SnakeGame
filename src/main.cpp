@@ -28,6 +28,11 @@ public:
             glRectd(x, y, x+1, y+1);
         }
     }
+
+    void Update() {
+        body.push_front(addPair(body[0], direction));
+        body.pop_back();
+    }
 };
 
 class Food {
