@@ -21,6 +21,14 @@ pair<int, int> addPair(pair<int, int> onePair, pair<int, int> otherPair){
     return make_pair(firstValue, secondValue);
 }
 
+bool ElementInDeque(pair<int, int> element, deque<pair<int, int>> deque) {
+    for(unsigned int i=0; i<deque.size(); i++)
+        if(IsPairsEquals(element, deque[i]))
+            return true;
+
+    return false;
+}
+
 class Snake {
 public:
     deque<pair<int, int>> body = {{6, 9}, {5, 9}, {4, 9}};
