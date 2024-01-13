@@ -19,7 +19,7 @@ class Snake {
 public:
     deque<pair<int, int>> body = {{6, 9}, {5, 9}, {4, 9}};
     pair<int, int> direction = {1,0};
-    
+
     void Draw(){
         for(unsigned int i=0; i<body.size(); i++){
             int x = body[i].first;
@@ -94,6 +94,28 @@ void timer(int t){
 }
 
 void keyboard(int key, int x, int y){
+    switch (key) {
+        case GLUT_KEY_UP: 
+            if(snake.direction.second != -1)
+                snake.direction = {0, 1};
+            break;
+        case GLUT_KEY_DOWN: 
+            if(snake.direction.second != 1)
+                snake.direction = {0, -1};
+            break;
+        case GLUT_KEY_LEFT: 
+            if(snake.direction.first != 1)
+                snake.direction = {-1, 0};
+            break;
+        case GLUT_KEY_RIGHT: 
+            if(snake.direction.first != -1)
+                snake.direction = {1, 0};
+            break;
+        default:
+            break;
+    }
+
+    glutPostRedisplay();
 }
 
 int main(int argc, char **argv){
