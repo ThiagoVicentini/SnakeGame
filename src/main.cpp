@@ -33,6 +33,7 @@ class Snake {
 public:
     deque<pair<int, int>> body = {{6, 9}, {5, 9}, {4, 9}};
     pair<int, int> direction = {1,0};
+    bool addSegment = false;
 
     void Draw(){
         for(unsigned int i=0; i<body.size(); i++){
@@ -45,7 +46,11 @@ public:
 
     void Update() {
         body.push_front(addPair(body[0], direction));
-        body.pop_back();
+        if(addSegment) {
+            addSegment = false;
+        } else {
+            body.pop_back();
+        }
     }
 };
 
@@ -103,6 +108,7 @@ public:
     void CheckCollisionWithFood() {
         if(IsPairsEquals(snake.body[0], food.position)) {
             food.position = food.GenerateRandomPos(snake.body);
+            snake.addSegment = true;
         }
     }
 };
