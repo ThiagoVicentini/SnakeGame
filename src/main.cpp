@@ -80,6 +80,13 @@ public:
 
     void Update() {
         snake.Update();
+        CheckCollisionWithFood();
+    }
+
+    void CheckCollisionWithFood() {
+        if(IsPairsEquals(snake.body[0], food.position)) {
+            food.position = food.GenerateRandomPos();
+        }
     }
 };
 
