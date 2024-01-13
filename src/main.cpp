@@ -100,6 +100,7 @@ public:
     Snake snake = Snake();
     Food food = Food(snake.body);
     bool running = true;
+    int score = 0;
 
     void Draw() {
         food.Draw();
@@ -118,6 +119,7 @@ public:
         if(IsPairsEquals(snake.body[0], food.position)) {
             food.position = food.GenerateRandomPos(snake.body);
             snake.addSegment = true;
+            score++;
         }
     }
 
@@ -134,6 +136,7 @@ public:
         snake.Reset();
         food.position = food.GenerateRandomPos(snake.body);
         running = false;
+        score = 0;
     }
 };
 
