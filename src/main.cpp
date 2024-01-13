@@ -9,6 +9,12 @@ using namespace std;
 int cellSize = 20;
 int cellCount = 40;
 
+pair<int, int> addPair(pair<int, int> onePair, pair<int, int> otherPair){
+    int firstValue = onePair.first + otherPair.first;
+    int secondValue = onePair.second + otherPair.second;
+    return make_pair(firstValue, secondValue);
+}
+
 class Snake {
 public:
     deque<pair<int, int>> body = {{6, 9}, {5, 9}, {4, 9}};
