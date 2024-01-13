@@ -112,6 +112,7 @@ public:
             snake.Update();
             CheckCollisionWithFood();
             CheckCollisionWithEdges();
+            CheckCollisionWithTail();
         }
     }
 
@@ -130,6 +131,13 @@ public:
         if(snake.body[0].second == cellCount || snake.body[0].second == -1) {
             GameOver();
         }
+    }
+
+    void CheckCollisionWithTail() {
+        deque<pair<int, int>> headlessBody = snake.body;
+        headlessBody.pop_front();
+        if(ElementInDeque(snake.body[0], headlessBody))
+            GameOver();
     }
 
     void GameOver() {
