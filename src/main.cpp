@@ -18,6 +18,7 @@ pair<int, int> addPair(pair<int, int> onePair, pair<int, int> otherPair){
 class Snake {
 public:
     deque<pair<int, int>> body = {{6, 9}, {5, 9}, {4, 9}};
+    pair<int, int> direction = {1,0};
     
     void Draw(){
         for(unsigned int i=0; i<body.size(); i++){
