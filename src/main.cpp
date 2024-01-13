@@ -52,6 +52,11 @@ public:
             body.pop_back();
         }
     }
+
+    void Reset() {
+        body = {{6, 9}, {5, 9}, {4, 9}};
+        direction = {1, 0};
+    }
 };
 
 class Food {
@@ -103,6 +108,7 @@ public:
     void Update() {
         snake.Update();
         CheckCollisionWithFood();
+            CheckCollisionWithEdges();
     }
 
     void CheckCollisionWithFood() {
@@ -110,6 +116,20 @@ public:
             food.position = food.GenerateRandomPos(snake.body);
             snake.addSegment = true;
         }
+    }
+
+    void CheckCollisionWithEdges() {
+        if(snake.body[0].first == cellCount || snake.body[0].first == -1) {
+            GameOver();
+        }
+        if(snake.body[0].second == cellCount || snake.body[0].second == -1) {
+            GameOver();
+        }
+    }
+
+    void GameOver() {
+        snake.Reset();
+        food.position = food.GenerateRandomPos(snake.body);
     }
 };
 
