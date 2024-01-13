@@ -53,8 +53,8 @@ class Food {
 public:
     pair<int, int> position;
 
-    Food(){
-        position = GenerateRandomPos();
+    Food(deque<pair<int, int>> snakeBody){
+        position = GenerateRandomPos(snakeBody);
     }
 
     ~Food(){
@@ -69,17 +69,26 @@ public:
         return min + rand()%(max-min);
     }
 
-    pair<int, int> GenerateRandomPos(){
+    pair<int, int> GenerateRandomCell() {
         int x = GetRandomValue(1, cellCount-2);
         int y = GetRandomValue(1, cellCount-2);
+
         return make_pair(x, y);
+    }
+
+    pair<int, int> GenerateRandomPos(deque<pair<int, int>> snakeBody){
+        pair<int, int> position = GenerateRandomCell();
+        while(ElementInDeque(position, snakeBody)){
+            position = GenerateRandomCell();
+        }
+        return position;
     }
 };
 
 class Game {
 public:
     Snake snake = Snake();
-    Food food = Food();
+    Food food = Food(snake.body);
 
     void Draw() {
         food.Draw();
@@ -93,7 +102,7 @@ public:
 
     void CheckCollisionWithFood() {
         if(IsPairsEquals(snake.body[0], food.position)) {
-            food.position = food.GenerateRandomPos();
+            food.position = food.GenerateRandomPos(snake.body);
         }
     }
 };
