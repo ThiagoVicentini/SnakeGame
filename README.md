@@ -3,7 +3,7 @@ Basic snake game built with OpenGL to explore basics Computer Graphics and Game 
 
 ### Game demo
 <p align="center">
-<img src="./github_images/snake.gif?raw=true" height="250">
+<img src="./github_images/snake.gif?raw=true" height="500">
 </p>
 
 ## How to use
