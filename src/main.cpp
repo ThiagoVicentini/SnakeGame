@@ -174,6 +174,15 @@ void display(){
         glVertex2f(offset, cellCount-offset);
     glEnd();
     
+    glColor3f(.0, .0, .0);
+    glRasterPos2f(offset, 0.5);
+    char string[10];
+    sprintf(string, "%d", game.score);
+    int i = 0;
+    while(string[i]){
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string[i++]);
+    }
+    
     game.Draw();
     glutSwapBuffers();
 }
