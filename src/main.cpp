@@ -8,6 +8,7 @@ using namespace std;
 
 int cellSize = 20;
 int cellCount = 40;
+int offset = 2;
 
 bool IsPairsEquals(pair<int, int> onePair, pair<int, int> otherPair){
     if(onePair.first == otherPair.first && onePair.second == otherPair.second)
@@ -40,7 +41,7 @@ public:
             int x = body[i].first;
             int y = body[i].second;
             glColor3d(43/255.0, 51/255.0, 24/255.0);
-            glRectd(x, y, x+1, y+1);
+            glRectd(x+offset, y+offset, x+1+offset, y+1+offset);
         }
     }
 
@@ -72,7 +73,7 @@ public:
 
     void Draw() {
         glColor3d(1.0, 0.0, 0.0);
-        glRectd(position.first, position.second, position.first+1, position.second+1);
+        glRectd(position.first+offset, position.second+offset, position.first+1+offset, position.second+1+offset);
     }
 
     int GetRandomValue(int min, int max) {
@@ -80,8 +81,8 @@ public:
     }
 
     pair<int, int> GenerateRandomCell() {
-        int x = GetRandomValue(1, cellCount-2);
-        int y = GetRandomValue(1, cellCount-2);
+        int x = GetRandomValue(0, cellCount-2-offset);
+        int y = GetRandomValue(0, cellCount-2-offset);
 
         return make_pair(x, y);
     }
@@ -125,10 +126,10 @@ public:
     }
 
     void CheckCollisionWithEdges() {
-        if(snake.body[0].first == cellCount || snake.body[0].first == -1) {
+        if(snake.body[0].first == cellCount-2-offset || snake.body[0].first == -1) {
             GameOver();
         }
-        if(snake.body[0].second == cellCount || snake.body[0].second == -1) {
+        if(snake.body[0].second == cellCount-2-offset || snake.body[0].second == -1) {
             GameOver();
         }
     }
@@ -166,7 +167,13 @@ void reshape(GLsizei w, GLsizei h){
 void display(){
     game.Update();
     glClear(GL_COLOR_BUFFER_BIT);
-    // Drawing
+    glBegin(GL_LINE_LOOP);
+        glVertex2f(offset, offset);
+        glVertex2f(cellCount-offset, offset);
+        glVertex2f(cellCount-offset, cellCount-offset);
+        glVertex2f(offset, cellCount-offset);
+    glEnd();
+    
     game.Draw();
     glutSwapBuffers();
 }
@@ -208,7 +215,7 @@ int main(int argc, char **argv){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
     glutInitWindowPosition(200, 100);
-    glutInitWindowSize(cellSize*cellCount, cellSize*cellCount);
+    glutInitWindowSize(cellSize*cellCount+2*offset, cellSize*cellCount+2*offset);
     glutCreateWindow("Snake game");
 
     init();
